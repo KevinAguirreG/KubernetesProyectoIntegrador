@@ -1,0 +1,352 @@
+﻿<UserControl x:Class="Microsip_Rentas.View.CreateEditTypeAssetView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Microsip_Rentas.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <DockPanel Background="#FFFFFF">
+
+        <TextBlock Text="Tipo de activo" 
+               Style="{StaticResource CustomFont}"
+               TextAlignment="Left"
+               FontSize="20"
+               Foreground="#202427"
+               DockPanel.Dock="Top"
+               FontWeight="Bold"
+               Margin="0,0,0,15" 
+               Height="24"/>
+
+        <Grid DockPanel.Dock="Top"
+        Style="{StaticResource CustomFont}"
+        Height="24"
+        Margin="0,0,0,5">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Orientation="Horizontal" 
+                    Grid.Column="0"
+                    Grid.Row="0">
+                <Button Padding="10"
+                    Background="#FF8722"
+                    Width="120"
+                    BorderThickness="0"
+                    Margin="0,0,5,0"
+                    CommandParameter="SaveAndNew"
+                    Command="{Binding SaveCommand}"
+                    Click="SaveAndNewButton_Click">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <!-- Definimos un borde con CornerRadius para hacerlo circular -->
+                            <Border Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                CornerRadius="3">
+                                <!-- ContentPresenter para mostrar el contenido del botón -->
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Guardar y nuevo"
+                                   Foreground="#FFFFFF"
+                                   FontSize="11"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Center"
+                                   FontWeight="Regular"/>
+                        </StackPanel>
+
+                    </Button.Content>
+                </Button>
+
+                <Button Padding="10"
+                    Background="#9F9F9F"
+                    Width="120"
+                    BorderThickness="0"
+                    Command="{Binding SaveCommand}"
+                    Click="SaveAndCloseButton_Click">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <!-- Definimos un borde con CornerRadius para hacerlo circular -->
+                            <Border Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                CornerRadius="3">
+                                <!-- ContentPresenter para mostrar el contenido del botón -->
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Guardar y cerrar"
+                                   Foreground="#FFFFFF"
+                                   FontSize="11"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Center"
+                                   FontWeight="Regular"/>
+                        </StackPanel>
+
+                    </Button.Content>
+                </Button>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal"
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    Margin="40,0,0,0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center">
+                <TextBlock Text="Folio:"
+                       FontSize="11"
+                       TextAlignment="Center" 
+                       VerticalAlignment="Center"
+                       Padding="0,3,0,0"
+                       Margin="0,0,5,0"
+                       Height="20"/>
+                <Border BorderBrush="#D8D8D8" 
+                    BorderThickness="1" 
+                    CornerRadius="3" 
+                    Padding="0" 
+                    Background="White"
+                    Height="20">
+                    <TextBox x:Name="folioText"
+                         Text="{Binding Path=AssetTypeRecord.Id, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         IsReadOnly="True"
+                         Margin="2"
+                         Width="150"
+                         Background="Transparent"
+                         BorderThickness="0"/>
+                </Border>
+
+            </StackPanel>
+
+
+        </Grid>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="39*"/>
+                <ColumnDefinition Width="361*"/>
+                <ColumnDefinition Width="400*"/>
+
+            </Grid.ColumnDefinitions>
+
+            <!-- Definición de Filas -->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+
+            </Grid.RowDefinitions>
+
+            <!-- Elementos dentro de la cuadrícula -->
+            <!-- Lado izquierdo -->
+            <StackPanel Grid.Column="0" 
+                        Grid.Row="0"
+                        Margin="0,0,20,0" Grid.ColumnSpan="2">
+                <TextBlock Text="Nombre"
+                           FontSize="11"
+                           FontWeight="Bold"
+                           Margin="0,13,0,1"/>
+                <Border BorderBrush="#D8D8D8" 
+                        BorderThickness="1" 
+                        CornerRadius="3" 
+                        Padding="0" 
+                        Background="White">
+                    <TextBox x:Name="nombreText"
+                             Text="{Binding Path=AssetTypeRecord.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             Margin="2"
+                             Background="Transparent"
+                             BorderThickness="0"/>
+                </Border>
+            </StackPanel>
+
+            <StackPanel Grid.Column="0" 
+                        Grid.Row="1"
+                        Margin="0,0,20,0" Grid.ColumnSpan="2">
+                <TextBlock Text="Nombre abreviado"
+                           FontSize="11"
+                           FontWeight="Bold"
+                           Margin="0,13,0,1"/>
+                <Border BorderBrush="#D8D8D8" 
+                        BorderThickness="1" 
+                        CornerRadius="3" 
+                        Padding="0" 
+                        Background="White">
+                    <TextBox x:Name="nombreAbreviadoText"
+                             Text="{Binding Path=AssetTypeRecord.AbreviationName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             Margin="2"
+                             Background="Transparent"
+                             BorderThickness="0"/>
+                </Border>
+            </StackPanel>
+
+            <StackPanel Grid.Column="0" 
+                    Grid.Row="2"
+                    Margin="0,0,20,0" Grid.ColumnSpan="2">
+                <TextBlock Text="Precio"
+                       FontSize="11"
+                       FontWeight="Bold"
+                       Margin="0,13,0,1"/>
+                <Border BorderBrush="#D8D8D8" 
+                        BorderThickness="1" 
+                        CornerRadius="3" 
+                        Padding="0" 
+                        Background="White">
+                    <TextBox x:Name="precioText"
+                             Text="{Binding Path=AssetTypeRecord.Price, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             Margin="2"
+                             Background="Transparent"
+                             BorderThickness="0"/>
+                </Border>
+            </StackPanel>
+
+            <StackPanel Grid.Column="0" 
+                    Grid.Row="3"
+                    Margin="0,0,20,0" Grid.ColumnSpan="2">
+                <TextBlock Text="Descipción"
+                       FontSize="11"
+                       FontWeight="Bold"
+                       Margin="0,13,0,1"/>
+
+                <Border BorderBrush="#D8D8D8" 
+                        BorderThickness="1" 
+                        CornerRadius="3" 
+                        Padding="0"
+                        Background="White">
+                    <TextBox x:Name="descripcionText"
+                            Text="{Binding Path=AssetTypeRecord.Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            Margin="2"
+                            Background="#FFFFFF"
+                            BorderThickness="0"
+                            AcceptsReturn="True"
+                            TextWrapping="Wrap"
+                            Height="140"/>
+                </Border>
+            </StackPanel>
+
+            <!-- Lado derecho -->
+            <StackPanel Grid.Column="2" 
+                    Grid.Row="0"
+                    Margin="20,0,0,0">
+                <TextBlock Text="Artículo de activo"
+                       FontSize="11"
+                       FontWeight="Bold"
+                       Margin="0,13,0,1"/>
+                <ComboBox x:Name="articuloAtivoCombo"
+                        Margin="2"
+                        Background="#FFFFFF"
+                        BorderThickness="0">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding ArticleName}"></TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+            </StackPanel>
+
+            <StackPanel Grid.Column="2" 
+                    Grid.Row="1"
+                    Grid.RowSpan="3"
+                    Margin="20,0,0,0">
+                <TextBlock Text="Atributos"
+                       FontSize="11"
+                       FontWeight="Bold"
+                       Margin="0,13,0,1"/>
+
+                <Grid Background="#F7F7F7">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" 
+                                HorizontalAlignment="Right">
+                        <Button Padding="10"
+                                Background="#FF8722"
+                                Width="120"
+                                Height="24"
+                                BorderThickness="0"
+                                Margin="0,10,5,5"
+                                Click="AgregarAtributoButton_Click">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <!-- Definimos un borde con CornerRadius para hacerlo circular -->
+                                    <Border Background="{TemplateBinding Background}" 
+                                            BorderBrush="{TemplateBinding BorderBrush}" 
+                                            BorderThickness="{TemplateBinding BorderThickness}" 
+                                            CornerRadius="3">
+                                        <!-- ContentPresenter para mostrar el contenido del botón -->
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Agregar atributo"
+                                               Foreground="#FFFFFF"
+                                               FontSize="11"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               TextAlignment="Center"
+                                               FontWeight="Regular"/>
+                                </StackPanel>
+
+                            </Button.Content>
+                        </Button>
+                    </StackPanel>
+
+
+
+                    <DataGrid Grid.Row="1"
+                             x:Name="AssetsDataGrid"
+                              Margin="5"
+                              AutoGenerateColumns="False"
+                              CanUserAddRows="true"
+                              CanUserDeleteRows="true"
+                              CanUserReorderColumns="False"
+                              CanUserResizeColumns="False"
+                              CanUserResizeRows="False"
+                              CanUserSortColumns="True"
+                              IsReadOnly="False"
+                              SelectionMode="Single"
+                              SelectionUnit="FullRow"
+                              BorderThickness="0"
+                              Height="217">
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Nombre de atributo" Width="*"/>
+                            <DataGridTextColumn Header="Descripción" Width="2*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </StackPanel>
+
+
+        </Grid>
+
+    </DockPanel>
+</UserControl>

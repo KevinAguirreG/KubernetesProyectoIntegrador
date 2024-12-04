@@ -1,0 +1,175 @@
+﻿<UserControl x:Class="Microsip_Rentas.View.GenerationPreinvoiceView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Microsip_Rentas.View"             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="DataGridCell">
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="#FFE2CA"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    
+    <DockPanel Background="#FFFFFF">
+
+        <TextBlock Text="Generación de prefacturas" 
+               Style="{StaticResource CustomFont}"
+               TextAlignment="Left"
+               FontSize="20"
+               Foreground="#202427"
+               DockPanel.Dock="Top"
+               FontWeight="Bold"
+               Margin="0,0,0,15" 
+               Height="24"/>
+
+        <StackPanel DockPanel.Dock="Top"
+                Style="{StaticResource CustomFont}"
+                HorizontalAlignment="Left"
+                Orientation="Horizontal"
+                Height="24"
+                Margin="0,0,0,5">
+
+            <TextBlock Text="Fechas:"
+                       Margin="0,0,8,0"
+                       VerticalAlignment="Center"/>
+
+            <DatePicker x:Name="StartDatePicker"
+                        SelectedDate="{Binding StartDate, Mode=TwoWay}" 
+                        DisplayDateStart="2020-01-01"
+                        VerticalContentAlignment="Center"
+                        VerticalAlignment="Center"/>
+
+            <TextBlock Text="a"
+                       Margin="10,0,10,0"
+                       VerticalAlignment="Center"/>
+
+            <DatePicker x:Name="EndDatePicker"
+                        SelectedDate="{Binding EndDate, Mode=TwoWay}" 
+                        DisplayDateStart="2020-01-01"
+                        VerticalContentAlignment="Center"
+                        VerticalAlignment="Center"/>
+
+            <Button Padding="10"
+                    Background="#FF8722"
+                    Width="107"
+                    Margin="10,0,0,0"
+                    BorderThickness="0"
+                    Click="SearchButton_Click">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <!-- Definimos un borde con CornerRadius para hacerlo circular -->
+                        <Border Background="{TemplateBinding Background}" 
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}" 
+                            CornerRadius="3">
+                            <!-- ContentPresenter para mostrar el contenido del botón -->
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Buscar"
+                               Foreground="#FFFFFF"
+                               FontSize="11"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               TextAlignment="Center"
+                               FontWeight="Regular"/>
+                    </StackPanel>
+
+                </Button.Content>
+            </Button>
+
+        </StackPanel>
+
+        <Grid DockPanel.Dock="Top"
+              Background="#F7F7F7">
+            <DataGrid x:Name="PreinvoicesDataGrid"
+                  Margin="10"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="true"
+                  CanUserReorderColumns="False"
+                  CanUserResizeColumns="True"
+                  CanUserResizeRows="False"
+                  CanUserSortColumns="True"
+                  IsReadOnly="True"
+                  ItemsSource="{Binding Preinvoices}"
+                  SelectionUnit="FullRow"
+                  BorderThickness="0"
+                  SelectionMode="Extended">
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Folio" Binding="{Binding Id}" Width="*"/>
+                    <DataGridTextColumn Header="Folio de contrato de renta" Binding="{Binding RentalContractId}" Width="2*"/>
+                    <DataGridTextColumn Header="Fecha de cobro" Binding="{Binding ChargeDate}" Width="1*"/>
+                    <DataGridTextColumn Header="Total" Binding="{Binding Total}" Width="1*"/>
+                </DataGrid.Columns>
+
+            </DataGrid>
+        </Grid>
+
+        <Grid VerticalAlignment="Bottom"
+              Height="50">
+            <StackPanel Orientation="Horizontal" 
+                        HorizontalAlignment="Right"
+                        Style="{StaticResource CustomFont}">
+                <Button Content="Cancelar" 
+                        Margin="0,0,10,0" 
+                        Width="77" 
+                        Height="30" 
+                        Background="#9F9F9F" 
+                        Foreground="White"
+                        BorderThickness="0"
+                        FontSize="11"
+                        Click="CancelarButton_Click">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <!-- Definimos un borde con CornerRadius para hacerlo circular -->
+                            <Border Background="{TemplateBinding Background}" 
+                        BorderBrush="{TemplateBinding BorderBrush}" 
+                        BorderThickness="{TemplateBinding BorderThickness}" 
+                        CornerRadius="3">
+                                <!-- ContentPresenter para mostrar el contenido del botón -->
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button Content="Crear prefacturas" 
+                        Width="120" 
+                        Height="30" 
+                        Background="#FF8722" 
+                        Foreground="White"
+                        FontSize="11"
+                        BorderThickness="0"
+                        Click="CrearPrefacturasButton_Click">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <!-- Definimos un borde con CornerRadius para hacerlo circular -->
+                            <Border Background="{TemplateBinding Background}" 
+                        BorderBrush="{TemplateBinding BorderBrush}" 
+                        BorderThickness="{TemplateBinding BorderThickness}" 
+                        CornerRadius="3">
+                                <!-- ContentPresenter para mostrar el contenido del botón -->
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+
+                </Button>
+            </StackPanel>
+
+        </Grid>
+
+    </DockPanel>
+</UserControl>

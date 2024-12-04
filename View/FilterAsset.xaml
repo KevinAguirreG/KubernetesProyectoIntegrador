@@ -1,0 +1,138 @@
+﻿<Window x:Class="Microsip_Rentas.View.FilterAsset"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Microsip_Rentas.View"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Title="FilterAsset" Height="330" Width="466">
+    <Border BorderBrush="Gray"
+            BorderThickness="1"
+            Background="White">
+        <DockPanel>
+            <StackPanel Margin="62,29,62,0" 
+                    DockPanel.Dock="Top"
+                    Style="{StaticResource CustomFont}">
+                <TextBlock Text="Filtrar por"
+                       FontSize="14"
+                       FontWeight="Bold"/>
+
+                <TextBlock Text="Folio"
+                       FontSize="11"
+                       FontWeight="Bold"
+                       Margin="0,13,0,1"/>
+                <Border BorderBrush="#D8D8D8" 
+                    BorderThickness="1" 
+                    CornerRadius="3" 
+                    Padding="0" 
+                    Background="White">
+                    <TextBox x:Name="folioText"
+                         Margin="2"
+                         Background="Transparent"
+                         BorderThickness="0"/>
+                </Border>
+                
+                <TextBlock Text="Nombre"
+                       FontSize="11"
+                       FontWeight="Bold"
+                       Margin="0,13,0,1"/>
+                <Border BorderBrush="#D8D8D8" 
+                    BorderThickness="1" 
+                    CornerRadius="3" 
+                    Padding="0" 
+                    Background="White">
+                    <TextBox x:Name="nombreText"
+                         Margin="2"
+                         Background="Transparent"
+                         BorderThickness="0"/>
+                </Border>
+
+                <TextBlock Text="Tipo de activo"
+                       FontSize="11"
+                       FontWeight="Bold"
+                       Margin="0,13,0,1"/>
+                <Border BorderBrush="#D8D8D8" 
+                    BorderThickness="1" 
+                    CornerRadius="3" 
+                    Padding="0" 
+                    Background="White">
+                    <TextBox x:Name="tipoActivoText"
+                         Margin="2"
+                         Background="Transparent"
+                         BorderThickness="0"/>
+                </Border>
+
+                <TextBlock Text="Estatus"
+                       FontSize="11"
+                       FontWeight="Bold"
+                       Margin="0,13,0,1"/>
+                <ComboBox x:Name="estatusCombo"
+                        Margin="2"
+                        Background="#FFFFFF"
+                        BorderThickness="0"/>
+            </StackPanel>
+
+            <Grid VerticalAlignment="Bottom"
+                  Background="#D8D8D8"
+                  Height="60">
+                <StackPanel Orientation="Horizontal" 
+                        HorizontalAlignment="Right" 
+                        Height="60"
+                        Margin="0,0,40,0"
+                        Style="{StaticResource CustomFont}">
+                    <Button Content="Cancelar" 
+                        Margin="0,0,10,0" 
+                        Width="77" 
+                        Height="30" 
+                        Background="#9F9F9F" 
+                        Foreground="White"
+                        BorderThickness="0"
+                        FontSize="11"
+                        Click="CancelarButton_Click">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <!-- Definimos un borde con CornerRadius para hacerlo circular -->
+                                <Border Background="{TemplateBinding Background}" 
+                                    BorderBrush="{TemplateBinding BorderBrush}" 
+                                    BorderThickness="{TemplateBinding BorderThickness}" 
+                                    CornerRadius="3">
+                                    <!-- ContentPresenter para mostrar el contenido del botón -->
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <Button Content="Aceptar" 
+                        Width="77" 
+                        Height="30" 
+                        Background="#FF8722" 
+                        Foreground="White"
+                        FontSize="11"
+                        BorderThickness="0"
+                        Click="AceptarButton_Click">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <!-- Definimos un borde con CornerRadius para hacerlo circular -->
+                                <Border Background="{TemplateBinding Background}" 
+                                    BorderBrush="{TemplateBinding BorderBrush}" 
+                                    BorderThickness="{TemplateBinding BorderThickness}" 
+                                    CornerRadius="3">
+                                    <!-- ContentPresenter para mostrar el contenido del botón -->
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+
+                    </Button>
+                </StackPanel>
+
+            </Grid>
+
+
+        </DockPanel>
+    </Border>
+</Window>
